@@ -1,4 +1,4 @@
-package entities;
+package com.devmonca.smlist.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -19,32 +19,29 @@ public class Playlist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private String author;
 
     public Playlist(){}
 
-    public Playlist(Long id, String title, String author) {
+    public Playlist(Long id, String title) {
         this.id = id;
         this.title = title;
-        this.author = author;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Playlist playlist = (Playlist) o;
-        return Objects.equals(id, playlist.id) && Objects.equals(title, playlist.title) && Objects.equals(author, playlist.author);
+        return Objects.equals(id, playlist.id) && Objects.equals(title, playlist.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, author);
+        return Objects.hash(id, title);
     }
 
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Title: "+ title + "\n");
-        sb.append("Artist: "+ author + "\n");
         return sb.toString();
     }
 }

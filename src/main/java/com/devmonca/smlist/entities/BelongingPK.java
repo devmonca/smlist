@@ -1,4 +1,4 @@
-package entities;
+package com.devmonca.smlist.entities;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
@@ -23,6 +23,13 @@ public class BelongingPK {
     @ManyToOne
     @JoinColumn(name = "playlist_id")
     private Playlist playlist;
+
+    public BelongingPK() {}
+
+    public BelongingPK(Music music, Playlist playlist){
+        this.music=music;
+        this.playlist=playlist;
+    }
 
     @Override
     public boolean equals(Object o) {

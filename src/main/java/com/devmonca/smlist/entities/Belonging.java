@@ -1,4 +1,4 @@
-package entities;
+package com.devmonca.smlist.entities;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -21,7 +21,7 @@ public class Belonging {
 
     public Belonging(){}
 
-    public Belonging (Integer position, Playlist playlist, Music music) {
+    public Belonging (Music music, Playlist playlist, Integer position) {
         id.setMusic(music);
         id.setPlaylist(playlist);
         this.position=position;

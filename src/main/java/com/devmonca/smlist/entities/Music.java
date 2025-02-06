@@ -1,4 +1,4 @@
-package entities;
+package com.devmonca.smlist.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
