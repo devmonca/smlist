@@ -2,15 +2,13 @@ package com.devmonca.smlist.controllers;
 
 import com.devmonca.smlist.dto.MusicMinDTO;
 import com.devmonca.smlist.dto.PlaylistDTO;
+import com.devmonca.smlist.dto.ReplacementDTO;
 import com.devmonca.smlist.entities.Music;
 import com.devmonca.smlist.entities.Playlist;
 import com.devmonca.smlist.services.MusicService;
 import com.devmonca.smlist.services.PlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,5 +35,10 @@ public class PlaylistController {
     public List<MusicMinDTO> findByPlaylist(@PathVariable Long playlistId){
         List<MusicMinDTO> response = musicService.findByPlaylist(playlistId);
         return response;
+    }
+
+    @PostMapping(value = "/{playlistId}/replacement")
+    public void moveMusic(@PathVariable Long playlistId, @RequestBody ReplacementDTO body){
+        playlistService.move(playlistId, body.getSourceIndex(), body.getDestinationIndex());
     }
 }
