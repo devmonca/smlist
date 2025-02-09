@@ -1,5 +1,6 @@
 package com.devmonca.smlist.services;
 
+import com.devmonca.smlist.dto.MusicDTO;
 import com.devmonca.smlist.dto.MusicMinDTO;
 import com.devmonca.smlist.entities.Music;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.devmonca.smlist.repositories.MusicRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MusicService {
@@ -19,5 +21,11 @@ public class MusicService {
     public List<MusicMinDTO> findAll(){
         List<Music> response = musicRepository.findAll();
         return response.stream().map(x->new MusicMinDTO(x)).toList();
+    }
+
+    @Transactional
+    public MusicDTO findById(Long id){
+        Music response = musicRepository.findById(id).get();
+        return new MusicDTO(response);
     }
 }
